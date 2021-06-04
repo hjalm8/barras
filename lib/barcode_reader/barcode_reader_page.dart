@@ -161,7 +161,6 @@ class _BarcodeReaderPageState extends State<BarcodeReaderPage> {
         _captureController.pause();
         Navigator.of(context).pop();
       },
-      style: ButtonStyle(backgroundColor: widget.buttonColor),
       child: Text(widget.cancelButtonText),
     );
   }
