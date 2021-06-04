@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
+
 import 'package:flutter_beep/flutter_beep.dart';
 import 'package:qrcode/qrcode.dart';
-import 'package:torch_compat/torch_compat.dart';
-
 import 'barcode_reader_overlay_painter.dart';
 
 class BarcodeReaderPage extends StatefulWidget {
@@ -64,12 +62,6 @@ class _BarcodeReaderPageState extends State<BarcodeReaderPage> {
         });
       }
     }
-
-    TorchCompat.hasTorch.then((value) {
-      setState(() {
-        _hasTorch = value;
-      });
-    });
 
     _captureController.onCapture((data) {
       _captureController.pause();
