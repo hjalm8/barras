@@ -81,12 +81,12 @@ class _BarcodeReaderPageState extends State<BarcodeReaderPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Stack(
         alignment: Alignment.center,
         children: <Widget>[
           _buildCaptureView(),
           _buildViewfinder(context),
-          _buildButtonBar(),
         ],
       ),
     );
@@ -110,58 +110,6 @@ class _BarcodeReaderPageState extends State<BarcodeReaderPage> {
         borderColor: widget.borderColor,
         borderStrokeWidth: widget.borderStrokeWidth,
       ),
-    );
-  }
-
-  Widget _buildButtonBar() {
-    return Align(
-      alignment: Alignment.bottomRight,
-      child: Container(
-        color: Colors.black26,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            _buildTorchButton(),
-            _buildCancelButton(),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildTorchButton() {
-    return (_hasTorch)
-        ? IconButton(
-            icon: Icon(
-              (_isTorchOn) ? Icons.flash_on : Icons.flash_off,
-              color: widget.buttonColor,
-            ),
-            onPressed: () {
-              if (_isTorchOn) {
-                _captureController.torchMode = CaptureTorchMode.off;
-              } else {
-                _captureController.torchMode = CaptureTorchMode.on;
-              }
-
-              setState(() {
-                _isTorchOn = !_isTorchOn;
-              });
-            },
-          )
-        : Container(
-            width: 10,
-            height: 10,
-          );
-  }
-
-  Widget _buildCancelButton() {
-    return TextButton(
-      onPressed: () {
-        _captureController.pause();
-        Navigator.of(context).pop();
-      },
-      child: Text(widget.cancelButtonText),
     );
   }
 }
